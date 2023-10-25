@@ -1,0 +1,30 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  background-color: black;
+}
+
+body {
+  background-color: #141414;
+  color: #aaaaaa;
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  margin-inline: auto;
+  padding: 30px 40px;
+  width: 100ch;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+section {
+  margin-bottom: 30px;
+}
