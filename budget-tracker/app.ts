@@ -23,13 +23,21 @@ updateDashboard();
 const addTransactionForm = document.forms.namedItem("add-transaction");
 addTransactionForm?.addEventListener("submit", (e) => {
   e.preventDefault();
-  const formData = new FormData(e.target as HTMLFormElement);
 
-  const type = formData.get("type");
+  const formData = new FormData(e.target as HTMLFormElement);
+  const type = parseInput(formData.get("type"), "Type");
   const amount = Number(formData.get("amount"));
-  const category = formData.get("category");
+  const category = parseInput(formData.get("category"), "Category");
+
   addTransaction(type, amount, category);
 });
+
+function parseInput(input, key) {
+  if (input == null) {
+    throw Error(`value of ${key} cant be null`);
+  }
+  return input;
+}
 
 function updateDashboard() {
   const balance = totalIncome - totalExpenses;

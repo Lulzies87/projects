@@ -6,11 +6,17 @@ var addTransactionForm = document.forms.namedItem("add-transaction");
 addTransactionForm === null || addTransactionForm === void 0 ? void 0 : addTransactionForm.addEventListener("submit", function (e) {
     e.preventDefault();
     var formData = new FormData(e.target);
-    var type = formData.get("type");
+    var type = parseInput(formData.get("type"), "Type");
     var amount = Number(formData.get("amount"));
-    var category = formData.get("category");
+    var category = parseInput(formData.get("category"), "Category");
     addTransaction(type, amount, category);
 });
+function parseInput(input, key) {
+    if (input == null) {
+        throw Error("value of " + key + " cant be null");
+    }
+    return input;
+}
 function updateDashboard() {
     var balance = totalIncome - totalExpenses;
     document.getElementById("dashboard").innerHTML = "\n        <h2>Dashboard</h2>\n        <p>Total Income: $" + totalIncome + "</p>\n        <p>Total Expenses: $" + totalExpenses + "</p>\n        <p>Balance: $" + balance + "</p>\n    ";
